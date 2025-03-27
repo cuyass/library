@@ -3,10 +3,14 @@ package com.library.utils;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+import io.github.cdimascio.dotenv.Dotenv;
+
 public class ConnectionDB {
-    private static final String URL = "jdbc: postgresql://localhost:5432/Library";
-    private static final String USER = "postgres";
-    private static final String PASS = "";
+    private static final Dotenv dotenv = Dotenv.load();
+
+    private static final String URL = dotenv.get("DB_URL");
+    private static final String USER = dotenv.get("DB_USER");
+    private static final String PASS = dotenv.get("DB_PASS");
 
     private static Connection connection;
     public static Connection initConnection(){
@@ -27,4 +31,4 @@ public class ConnectionDB {
             System.out.println(e.getMessage());
         }
     }
-} /* meter USER y PASS en .env, .gitignore */
+} 
