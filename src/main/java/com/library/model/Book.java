@@ -13,7 +13,7 @@ public class Book {
         this.title=title;
         this.description=description;
         this.isbn=isbn;
-        this.isAvailable=true;
+        this.available=true;
         this.author=author;
         this.genre=genre;
     }
@@ -54,12 +54,8 @@ public class Book {
         return this.isAvailable;
     }
 
-    public boolean getIsAvailable() {
-        return this.isAvailable;
-    }
-
-    public void setIsAvailable(boolean isAvailable) {
-        this.isAvailable = isAvailable;
+    public void setIsAvailable(boolean available) {
+        this.isAvailable = available;
     }
 
     public String getAuthor() {
