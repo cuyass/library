@@ -1,4 +1,4 @@
-package com.library.utils;
+package com.library.config;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,7 +16,7 @@ public class ConnectionDB {
     public static Connection initConnection(){
         try{
             connection = DriverManager.getConnection(URL, USER, PASS);
-            System.out.println("Connected successfully!");
+            System.out.println("S'ha connectat correctament!");
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
@@ -26,7 +26,7 @@ public class ConnectionDB {
     public static void closeConnection(){
         try{
             connection.close();
-            System.out.println("Closed connection");
+            System.out.println("Connexió tancada!");
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
