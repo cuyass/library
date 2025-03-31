@@ -11,9 +11,9 @@ public class BookView {
     private final Scanner scanner;
     
 
-    public BookView(BookController bookController) {
+    public BookView(BookController bookController, Scanner scanner) {
         this.bookController = bookController;
-        this.scanner = new Scanner(System.in);
+        this.scanner = scanner;
     }
 	 
     public void createBook() {
@@ -35,6 +35,6 @@ public class BookView {
         }
         Book book = new Book(title, author, genre, isbn, description);
         bookController.createBook(book);
-        scanner.close();
+        
     }
 }
