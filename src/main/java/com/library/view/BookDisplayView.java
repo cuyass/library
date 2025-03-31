@@ -54,7 +54,7 @@ public class BookDisplayView {
         System.out.println("Autor: " + book.getAuthor());
         System.out.println("Gènere: " + book.getGenre());
         System.out.println("ISBN: " + book.getIsbn());
-        System.out.println("Disponible: " + (book.isIsAvailable() ? "Sí" : "No"));
+        System.out.println("Disponible: " + (book.getIsAvailable() ? "Sí" : "No"));
         System.out.println("-----------------------");
     }
 
@@ -65,7 +65,7 @@ public class BookDisplayView {
         System.out.println("Autor: " + book.getAuthor());
         System.out.println("Gènere: " + book.getGenre());
         System.out.println("ISBN: " + book.getIsbn());
-        System.out.println("Disponible: " + (book.isIsAvailable() ? "Sí" : "No"));
+        System.out.println("Disponible: " + (book.getIsAvailable() ? "Sí" : "No"));
         System.out.println("-----------------------");
     }
 }

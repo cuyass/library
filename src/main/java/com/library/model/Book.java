@@ -9,14 +9,23 @@ public class Book {
     private String genre;
     private boolean isAvailable;
 
-    public Book(int id, String title, String description, String isbn, String author, String genre, boolean isAvailable) {
-        this.id=id;
-        this.title=title;
-        this.description=description;
-        this.isbn=isbn;
-        this.author=author;
-        this.genre=genre;
-      /* this.isAvailable=isAvailable;*/
+    public Book(String title, String description, String isbn, String author, String genre, boolean isAvailable) {
+        this.title = title;
+        this.description = description;
+        this.isbn = isbn;
+        this.author = author;
+        this.genre = genre;
+        this.isAvailable = true;
+    }
+
+    public Book(int id, String title, String description, String isbn, String author, String genre,
+            boolean isAvailable) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.isbn = isbn;
+        this.author = author;
+        this.genre = genre;
         this.isAvailable = true;
     }
 
@@ -60,8 +69,6 @@ public class Book {
         this.isAvailable = available;
     }
 
-
-
     public String getAuthor() {
         return this.author;
     }
@@ -77,5 +84,5 @@ public class Book {
     public void setGenre(String genre) {
         this.genre = genre;
     }
-	
+
 }

@@ -1,10 +1,10 @@
 package com.library.view;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 import com.library.controller.BookController;
 import com.library.model.Book;
-import java.sql.SQLException;
 
 public class BookView { 
      
@@ -34,7 +34,8 @@ public class BookView {
             System.out.println("La descripció no pot tenir més de 200 caràcters.");
             return;
         }
-        Book book = new Book(title, author, genre, isbn, description);
+        Book book = new Book(title, description, isbn, author, genre, true); 
+
         try {
             bookController.createBook(book);
         } catch (SQLException e) {

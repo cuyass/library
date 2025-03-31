@@ -8,16 +8,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.library.config.ConnectionDB;
-/* import java.util.logging.*; */
 
 public class BookDAO {
-    /* private static final Logger logger = Logger.getLogger(BookDAO.class.getName()); */
     private Connection connection;
-    
+
     public void beginTransaction() throws SQLException {
         connection = ConnectionDB.initConnection();
         connection.setAutoCommit(false);
     }
+
     public void commit() throws SQLException {
         if (connection != null) {
             connection.commit();
@@ -25,6 +24,7 @@ public class BookDAO {
             connection = null;
         }
     }
+
     public void rollback() throws SQLException {
         if (connection != null) {
             connection.rollback();
@@ -32,7 +32,7 @@ public class BookDAO {
             connection = null;
         }
     }
-   
+
     public void createBook(Book book) throws SQLException {
         if (connection == null) {
             throw new IllegalStateException("No hi ha una transacció activa");
@@ -153,16 +153,15 @@ public class BookDAO {
             pstmn.executeUpdate();
         }
     }
-  
+
     private Book mapResultSetToBook(ResultSet rs) throws SQLException {
         return new Book(
-            rs.getInt("id"),
-            rs.getString("title"),
-            rs.getString("description"),
-            rs.getString("isbn"),
-            rs.getString("author"),
-            rs.getString("genre"),
-            rs.getBoolean("isAvailable")
-        );
+                rs.getInt("id"),
+                rs.getString("title"),
+                rs.getString("description"),
+                rs.getString("isbn"),
+                rs.getString("author"),
+                rs.getString("genre"),
+                rs.getBoolean("isAvailable"));
     }
 }
