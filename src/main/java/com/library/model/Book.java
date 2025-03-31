@@ -1,4 +1,4 @@
-package com.library.model;
+package main.java.com.library.model;
 
 public class Book {
     private int id;
