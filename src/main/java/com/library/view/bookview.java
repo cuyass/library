@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import com.library.controller.BookController;
 import com.library.model.Book;
+import java.sql.SQLException;
 
 public class BookView { 
      
@@ -16,7 +17,7 @@ public class BookView {
         this.scanner = scanner;
     }
 	 
-    public void createBook() {
+    public void createBook() throws SQLException {
         System.out.println(" ===AFEGIR LLIBRE===");
         System.out.println("Escriu el titol del llibre");
         String title = scanner.nextLine();
@@ -34,7 +35,11 @@ public class BookView {
             return;
         }
         Book book = new Book(title, author, genre, isbn, description);
-        bookController.createBook(book);
+        try {
+            bookController.createBook(book);
+        } catch (SQLException e) {
+            System.out.println("Error al crear el llibre: " + e.getMessage());
+        }
         
     }
 }

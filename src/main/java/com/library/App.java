@@ -1,5 +1,6 @@
 package com.library;
 import java.util.Scanner;
+
 import com.library.controller.BookController;
 import com.library.model.BookDAO;
 import com.library.view.BookView; 
@@ -13,7 +14,7 @@ public class App
 
       BookDAO bookDAO = new BookDAO(); 
       BookController bookController = new BookController(bookDAO);
-      BookView bookView = new BookView(bookController);
+      BookView bookView = new BookView(bookController, scanner);
       bookView.createBook(); closeScanner();
     }
     private static void closeScanner() {

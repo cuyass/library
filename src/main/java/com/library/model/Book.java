@@ -1,21 +1,23 @@
-package main.java.com.library.model;
+package com.library.model;
 
 public class Book {
     private int id;
     private String title;
     private String description;
     private String isbn;
-    private boolean isAvailable;
     private String author;
     private String genre;
+    private boolean isAvailable;
 
-    public Book(String title, String description, String isbn, String author, String genre){
+    public Book(int id, String title, String description, String isbn, String author, String genre, boolean isAvailable) {
+        this.id=id;
         this.title=title;
         this.description=description;
         this.isbn=isbn;
-        this.available=true;
         this.author=author;
         this.genre=genre;
+      /* this.isAvailable=isAvailable;*/
+        this.isAvailable = true;
     }
 
     public int getId() {
@@ -50,13 +52,15 @@ public class Book {
         this.isbn = isbn;
     }
 
-    public boolean isIsAvailable() {
+    public boolean getIsAvailable() {
         return this.isAvailable;
     }
 
     public void setIsAvailable(boolean available) {
         this.isAvailable = available;
     }
+
+
 
     public String getAuthor() {
         return this.author;

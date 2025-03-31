@@ -1,10 +1,13 @@
 package com.library.model;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import com.library.config.ConnectionDB;
-import main.java.com.library.model.Book;
 import java.util.List;
+
+import com.library.config.ConnectionDB;
 /* import java.util.logging.*; */
 
 public class BookDAO {
@@ -134,7 +137,7 @@ public class BookDAO {
             pstmn.setString(3, book.getIsbn());
             pstmn.setString(4, book.getAuthor());
             pstmn.setString(5, book.getGenre());
-            pstmn.setBoolean(6, book.isAvailable());
+            pstmn.setBoolean(6, book.getIsAvailable());
             pstmn.setInt(7, book.getId());
             pstmn.executeUpdate();
         }

@@ -3,6 +3,7 @@ package com.library.controller;
 import java.util.List;
 import com.library.model.Book;
 import com.library.model.BookDAO;
+import java.sql.*;
 
 
 public class BookController {
@@ -12,12 +13,13 @@ public class BookController {
         this.bookDAO = bookDAO;
     }
     
-    public void createBook(Book book) {
+    public void createBook(Book book) throws SQLException {
         bookDAO.createBook(book);
     }
     
-    public List<Book> getAllBooks() {
+    public List<Book> getAllBooks() throws SQLException {
         return bookDAO.getAllBooks();
+        
     }
     
     public Book getBookById(int id) {
