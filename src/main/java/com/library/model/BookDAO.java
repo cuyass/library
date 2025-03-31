@@ -5,9 +5,10 @@ import java.util.ArrayList;
 import com.library.config.ConnectionDB;
 import main.java.com.library.model.Book;
 import java.util.List;
+/* import java.util.logging.*; */
 
 public class BookDAO {
-    private static final Logger logger = Logger.getLogger(BookDAO.class.getName());
+    /* private static final Logger logger = Logger.getLogger(BookDAO.class.getName()); */
     private Connection connection;
     
     public void beginTransaction() throws SQLException {
@@ -63,7 +64,7 @@ public class BookDAO {
 
     public Book getBookById(int id) throws SQLException {
         if (connection == null) {
-            throw new IllegalStateException("No hay transacción activa");
+            throw new IllegalStateException("No hi ha una transacció activa");
         }
         String sql = "SELECT * FROM books WHERE id = ?";
         try (PreparedStatement pstmn = connection.prepareStatement(sql)) {
