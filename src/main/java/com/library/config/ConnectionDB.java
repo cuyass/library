@@ -7,7 +7,8 @@ import java.sql.SQLException;
 import io.github.cdimascio.dotenv.Dotenv;
 
 public class ConnectionDB {
-    private static final Dotenv dotenv = Dotenv.load();
+    private static final Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
+
 
     private static final String URL = dotenv.get("DB_URL");
     private static final String USER = dotenv.get("DB_USER");
@@ -16,6 +17,10 @@ public class ConnectionDB {
     private static Connection connection;
 
     public static Connection initConnection() {
+        System.out.println("DB_URL: " + dotenv.get("DB_URL"));
+        System.out.println("DB_USER: " + dotenv.get("DB_USER"));
+        System.out.println("DB_PASS: " + dotenv.get("DB_PASS"));
+        
         try {
             connection = DriverManager.getConnection(URL, USER, PASS);
             System.out.println("S'ha connectat correctament!");

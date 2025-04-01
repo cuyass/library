@@ -13,29 +13,40 @@ public class BookDAO {
     private Connection connection;
 
     public void beginTransaction() throws SQLException {
-        connection = ConnectionDB.initConnection();
+        if (connection == null) {
+            connection = ConnectionDB.initConnection();
+        }
         connection.setAutoCommit(false);
     }
 
     public void commit() throws SQLException {
         if (connection != null) {
-            connection.commit();
-            connection.close();
-            connection = null;
+            try {
+                connection.commit();
+            } catch (SQLException e) {
+                connection.rollback();
+                throw e;
+            } finally {
+                connection.close();
+                connection = null;
+            }
         }
     }
 
     public void rollback() throws SQLException {
         if (connection != null) {
-            connection.rollback();
-            connection.close();
-            connection = null;
+            try {
+                connection.rollback();
+            } finally {
+                connection.close();
+                connection = null;
+            }
         }
     }
 
     public void createBook(Book book) throws SQLException {
         if (connection == null) {
-            throw new IllegalStateException("No hi ha una transacció activa");
+            throw new IllegalStateException("La conexión no está activa");
         }
         String sql = "INSERT INTO books (title, description, isbn, author, genre, isAvailable) VALUES (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement pstmn = connection.prepareStatement(sql)) {
@@ -56,13 +67,13 @@ public class BookDAO {
         String sql = "SELECT * FROM books";
         List<Book> books = new ArrayList<>();
         try (PreparedStatement pstmn = connection.prepareStatement(sql); ResultSet rs = pstmn.executeQuery()) {
-                while (rs.next()) {
-                    books.add(mapResultSetToBook(rs));
-                }
-                
+            while (rs.next()) {
+                books.add(mapResultSetToBook(rs));
             }
-            return books;
         }
+        return books;
+    }
+
     public Book getBookById(int id) throws SQLException {
         if (connection == null) {
             throw new IllegalStateException("No hi ha una transacció activa");
@@ -83,17 +94,17 @@ public class BookDAO {
         if (connection == null) {
             throw new IllegalStateException("No hi ha una transacció activa");
         }
-        
-        String columnName; 
+
+        String columnName;
         columnName = switch (field) {
             case "title" -> "title";
             case "author" -> "author";
             case "genre" -> "genre";
             default -> throw new IllegalArgumentException("Camp no permès a la cerca");
         };
-        
+
         String sql = "SELECT * FROM books WHERE " + columnName + " ILIKE ?";
-        
+
         List<Book> books = new ArrayList<>();
         try (PreparedStatement pstmn = connection.prepareStatement(sql)) {
             pstmn.setString(1, "%" + value + "%");
@@ -105,7 +116,6 @@ public class BookDAO {
         }
         return books;
     }
-    
 
     public List<Book> getBooksByTitle(String title) throws SQLException {
         return getBooksByField("title", title);
