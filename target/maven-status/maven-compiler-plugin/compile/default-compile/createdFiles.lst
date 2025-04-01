@@ -1,5 +1,8 @@
-com\library\model\Book.class
-com\library\App.class
-com\library\utils\ConnectionDB.class
-com\library\service\BookService.class
-com\library\dao\BookDAO.class
+com/library/model/BookDAO.class
+com/library/config/DAOException.class
+com/library/controller/BookController.class
+com/library/view/BookDisplayView.class
+com/library/App.class
+com/library/config/ConnectionDB.class
+com/library/view/BookView.class
+com/library/model/Book.class

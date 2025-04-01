@@ -21,9 +21,9 @@ public class BookController {
         return bookDAO.getAllBooks();
     }
 
-    public Book getBookById(int id) throws SQLException {
+    /* public Book getBookById(int id) throws SQLException {
         return bookDAO.getBookById(id);
-    }
+    } */
 
     public List<Book> getBooksByTitle(String title) throws SQLException {
         return bookDAO.getBooksByTitle(title);
