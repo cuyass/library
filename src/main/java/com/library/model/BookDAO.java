@@ -55,16 +55,14 @@ public class BookDAO {
         }
         String sql = "SELECT * FROM books";
         List<Book> books = new ArrayList<>();
-        try (PreparedStatement pstmn = connection.prepareStatement(sql)) {
-            try (ResultSet rs = pstmn.executeQuery()) {
+        try (PreparedStatement pstmn = connection.prepareStatement(sql); ResultSet rs = pstmn.executeQuery()) {
                 while (rs.next()) {
                     books.add(mapResultSetToBook(rs));
                 }
+                
             }
+            return books;
         }
-        return books;
-    }
-
     public Book getBookById(int id) throws SQLException {
         if (connection == null) {
             throw new IllegalStateException("No hi ha una transacció activa");
@@ -85,7 +83,24 @@ public class BookDAO {
         if (connection == null) {
             throw new IllegalStateException("No hi ha una transacció activa");
         }
-        String sql = "SELECT * FROM books WHERE " + field + " ILIKE ?";
+        
+        String columnName; 
+        switch (field) {
+            case "title":
+                columnName = "title";
+                break;
+            case "author":
+                columnName = "author";
+                break;
+            case "genre":
+                columnName = "genre";
+                break;
+            default:
+                throw new IllegalArgumentException("Camp no permès a la cerca");
+        }
+        
+        String sql = "SELECT * FROM books WHERE " + columnName + " ILIKE ?";
+        
         List<Book> books = new ArrayList<>();
         try (PreparedStatement pstmn = connection.prepareStatement(sql)) {
             pstmn.setString(1, "%" + value + "%");
@@ -97,6 +112,7 @@ public class BookDAO {
         }
         return books;
     }
+    
 
     public List<Book> getBooksByTitle(String title) throws SQLException {
         return getBooksByField("title", title);
