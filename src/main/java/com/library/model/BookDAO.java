@@ -85,19 +85,12 @@ public class BookDAO {
         }
         
         String columnName; 
-        switch (field) {
-            case "title":
-                columnName = "title";
-                break;
-            case "author":
-                columnName = "author";
-                break;
-            case "genre":
-                columnName = "genre";
-                break;
-            default:
-                throw new IllegalArgumentException("Camp no permès a la cerca");
-        }
+        columnName = switch (field) {
+            case "title" -> "title";
+            case "author" -> "author";
+            case "genre" -> "genre";
+            default -> throw new IllegalArgumentException("Camp no permès a la cerca");
+        };
         
         String sql = "SELECT * FROM books WHERE " + columnName + " ILIKE ?";
         
