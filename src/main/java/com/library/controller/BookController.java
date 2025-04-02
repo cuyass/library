@@ -13,35 +13,99 @@ public class BookController {
         this.bookDAO = bookDAO;
     }
 
-    public void createBook(Book book) throws SQLException {
-        bookDAO.createBook(book);
+    public boolean createBook(Book book) throws SQLException {
+        try {
+            bookDAO.beginTransaction();
+            boolean result = bookDAO.createBook(book);
+            bookDAO.commit();
+            return result;
+        } catch (SQLException e) {
+            bookDAO.rollback();
+            throw e;
+        }
     }
 
     public List<Book> getAllBooks() throws SQLException {
-        return bookDAO.getAllBooks();
+        try {
+            bookDAO.beginTransaction();
+            List<Book> books = bookDAO.getAllBooks();
+            bookDAO.commit();
+            return books;
+        } catch (SQLException e) {
+            bookDAO.rollback();
+            throw e;
+        }
     }
 
     public Book getBookById(int id) throws SQLException {
-        return bookDAO.getBookById(id);
+        try {
+            bookDAO.beginTransaction();
+            Book book = bookDAO.getBookById(id);
+            bookDAO.commit();
+            return book;
+        } catch (SQLException e) {
+            bookDAO.rollback();
+            throw e;
+        }
     }
 
     public List<Book> getBooksByTitle(String title) throws SQLException {
-        return bookDAO.getBooksByTitle(title);
+        try {
+            bookDAO.beginTransaction();
+            List<Book> books = bookDAO.getBooksByTitle(title);
+            bookDAO.commit();
+            return books;
+        } catch (SQLException e) {
+            bookDAO.rollback();
+            throw e;
+        }
     }
 
     public List<Book> getBooksByAuthor(String author) throws SQLException {
-        return bookDAO.getBooksByAuthor(author);
+        try {
+            bookDAO.beginTransaction();
+            List<Book> books = bookDAO.getBooksByAuthor(author);
+            bookDAO.commit();
+            return books;
+        } catch (SQLException e) {
+            bookDAO.rollback();
+            throw e;
+        }
     }
 
     public List<Book> getBooksByGenre(String genre) throws SQLException {
-        return bookDAO.getBooksByGenre(genre);
+        try {
+            bookDAO.beginTransaction();
+            List<Book> books = bookDAO.getBooksByGenre(genre);
+            bookDAO.commit();
+            return books;
+        } catch (SQLException e) {
+            bookDAO.rollback();
+            throw e;
+        }
     }
 
-    public void updateBook(Book book) throws SQLException {
-        bookDAO.updateBook(book);
+    public boolean updateBook(Book book) throws SQLException {
+        try {
+            bookDAO.beginTransaction();
+            boolean result = bookDAO.updateBook(book);
+            bookDAO.commit();
+            return result;
+        } catch (SQLException e) {
+            bookDAO.rollback();
+            throw e;
+        }
     }
 
-    public void deleteBook(int id) throws SQLException {
-        bookDAO.deleteBook(id);
+    public boolean deleteBook(int id) throws SQLException {
+        try {
+            bookDAO.beginTransaction();
+            boolean result = bookDAO.deleteBook(id);
+            bookDAO.commit();
+            return result;
+        } catch (SQLException e) {
+            bookDAO.rollback();
+            throw e;
+        }
     }
 }

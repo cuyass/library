@@ -5,13 +5,13 @@ import java.util.List;
 import com.library.model.Book;
 
 public class BookDisplayView {
-    
+
     public void displayBookList(List<Book> books) {
         if (books.isEmpty()) {
             System.out.println("No hi ha llibres a la biblioteca.");
             return;
         }
-        
+
         for (Book book : books) {
             displayBasicBookInfo(book);
         }
@@ -22,7 +22,7 @@ public class BookDisplayView {
             System.out.println("No s'han trobat llibres.");
             return;
         }
-        
+
         for (Book book : books) {
             displayCompleteBookInfo(book);
         }
@@ -33,7 +33,7 @@ public class BookDisplayView {
             System.out.println("No s'han trobat llibres amb aquest gènere.");
             return;
         }
-        
+
         for (Book book : books) {
             displayBasicBookInfo(book);
         }
@@ -44,7 +44,7 @@ public class BookDisplayView {
             System.out.println("No s'ha trobat el llibre.");
             return;
         }
-        
+
         displayCompleteBookInfo(book);
     }
 
@@ -69,4 +69,3 @@ public class BookDisplayView {
         System.out.println("-----------------------");
     }
 }
-
