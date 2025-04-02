@@ -57,8 +57,12 @@ public class BookView {
                         try {
                             List<Book> books = bookController.getAllBooks();
                             System.out.println("=== Tots els llibres ===\n");
-                            for (Book book : books) {
-                                System.out.println(book);
+                            if (books.isEmpty()) {
+                                System.out.println(">>---> No s'han trobat llibres. <---<<");
+                            } else {
+                                for (Book book : books) {
+                                    System.out.println(book);
+                                }
                             }
                         } catch (SQLException e) {
                             System.err.println("Error al recuperar els llibres: " + e.getMessage());
@@ -123,7 +127,7 @@ public class BookView {
     }}
 
     public void createBook() throws SQLException {
-        System.out.println(" === Afegir llibre ===");
+        System.out.println(" === Afegir llibre ===\n");
         System.out.println("Escriu el títol del llibre");
         String title = scanner.nextLine();
         System.out.println("Escriu l'autor del llibre");
