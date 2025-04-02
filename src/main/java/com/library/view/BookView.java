@@ -89,6 +89,7 @@ public class BookView {
     private void showAllBooks() {
         try {
             List<Book> books = bookController.getAllBooks();
+            System.out.println("=== Tots els llibres ===\n");
             displayView.displayBookList(books);
         } catch (SQLException e) {
             System.out.println("Error en mostrar els llibres: " + e.getMessage());
@@ -185,7 +186,7 @@ public class BookView {
                 System.out.println("No s'ha pogut actualitzar el llibre.");
             }
         } catch (NumberFormatException e) {
-            System.out.println("Si us plau, introduïu un ID vàlid.");
+            System.out.println("Si us plau, introdueix un ID vàlid.");
         } catch (SQLException e) {
             System.out.println("Error en editar el llibre: " + e.getMessage());
         }

@@ -8,7 +8,14 @@ public class BookDisplayView {
 
     public void displayBookList(List<Book> books) {
         if (books.isEmpty()) {
-            System.out.println("No hi ha llibres a la biblioteca.");
+            System.out.println("      __..._   _...__");
+            System.out.println("__..-\"      `Y`      \"-._");
+            System.out.println("\\\\ La        |           /");
+            System.out.println("\\\\\\ biblio-  |     és   //");
+            System.out.println("\\\\\\\\  teca   |  buida  ///");
+            System.out.println(" \\\\\\\\        |.---.._ ///");
+            System.out.println("  \\\\\\\\_..---.Y.---.._/// ");
+            System.out.println("   '`               `'");
             return;
         }
 
