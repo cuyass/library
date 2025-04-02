@@ -19,7 +19,8 @@ public class ConnectionDB {
 
         try {
             connection = DriverManager.getConnection(URL, USER, PASS);
-            System.out.println("S'ha connectat correctament!");
+            System.out.println("\nConnexió a base de dades: ");
+            System.out.println("...");
         } catch (SQLException e) {
             System.out.println("Error de SQL: " + e.getMessage());
         } catch (Exception e) {
