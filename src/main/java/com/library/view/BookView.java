@@ -1,6 +1,7 @@
 package com.library.view;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Scanner;
 
 import com.library.controller.BookController;
@@ -37,10 +38,11 @@ public class BookView {
     }
 
     public void handleUserInput() {
-        while (true) {
+        boolean running = true;
+        while (running) {
             displayMenu();
             System.out.println("Escull una opció: ");
-            /* int choice = scanner.nextInt(); */
+            
             String input = scanner.nextLine().trim();
             int choice;
             try {
@@ -52,7 +54,18 @@ public class BookView {
             try {
                 switch (choice) {
                     case 1:
-                        bookController.getAllBooks();
+                        try {
+                            List<Book> books = bookController.getAllBooks();
+                            System.out.println("=== Tots els llibres ===\n");
+                            for (Book book : books) {
+                                System.out.println(book);
+                            }
+                        } catch (SQLException e) {
+                            System.err.println("Error al recuperar els llibres: " + e.getMessage());
+                        }
+
+                        System.out.println("\nPrem Enter per tornar al Llibrenú...");
+                        scanner.nextLine();
                         break;
                     case 2:
                         System.out.println("Introdueix el títol del llibre: ");
@@ -99,7 +112,8 @@ public class BookView {
                         break;
                     case 8:
                         System.out.println("Sortint...");
-                        return;
+                        running = false;
+                        break;
                     default:
                         System.out.println("Opció invàlida. Si us plau, torna-ho a provar.");
                 }

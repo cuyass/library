@@ -9,6 +9,7 @@ public class Book {
     private String genre;
     private boolean isAvailable;
 
+       
     public Book(String title, String description, String isbn, String author, String genre, boolean isAvailable) {
         this.title = title;
         this.description = description;
@@ -27,6 +28,18 @@ public class Book {
         this.author = author;
         this.genre = genre;
         this.isAvailable = true;
+    }
+
+    @Override
+    public String toString() {
+        return "Llibre {" +
+            "id: " + id +    
+            ", títol: " + title +
+            ", descripció: " + description +
+            ", isbn: " + isbn +
+            ", autor: " + author +
+            ", gènere: " + genre +
+            '}';
     }
 
     public int getId() {
