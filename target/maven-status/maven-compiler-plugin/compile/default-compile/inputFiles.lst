@@ -1,0 +1,8 @@
+/home/cibertt2s/FemCod/library/src/main/java/com/library/view/BookView.java
+/home/cibertt2s/FemCod/library/src/main/java/com/library/view/BookDisplayView.java
+/home/cibertt2s/FemCod/library/src/main/java/com/library/model/BookDAO.java
+/home/cibertt2s/FemCod/library/src/main/java/com/library/controller/BookController.java
+/home/cibertt2s/FemCod/library/src/main/java/com/library/config/DAOException.java
+/home/cibertt2s/FemCod/library/src/main/java/com/library/App.java
+/home/cibertt2s/FemCod/library/src/main/java/com/library/model/Book.java
+/home/cibertt2s/FemCod/library/src/main/java/com/library/config/ConnectionDB.java

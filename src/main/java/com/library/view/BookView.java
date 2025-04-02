@@ -21,7 +21,9 @@ public class BookView {
     public void showMenu() {
         boolean exit = false;
         while (!exit) {
-            System.out.println("\nMenú:");
+            System.out.println("\n╔═══════════════════╗");
+            System.out.println("║     Llibrenú      ║");
+            System.out.println("╚═══════════════════╝\n");
             System.out.println("1. Crear llibre");
             System.out.println("2. Mostrar llibres");
             System.out.println("3. Buscar llibre per títol");
@@ -47,10 +49,10 @@ public class BookView {
                         exit = true;
                         System.out.println("Adéu!");
                     }
-                    default -> System.out.println("Opcio no vàlida. Torneu a intentar-ho.");
+                    default -> System.out.println("Opció no vàlida. Torna a intentar-ho.");
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Si us plau, introduïu un numero valid.");
+                System.out.println("Si us plau, introdueix un número vàlid.");
             } catch (Exception e) {
                 System.out.println("S'ha produït un error: " + e.getMessage());
             }
@@ -59,23 +61,23 @@ public class BookView {
 
     private void createBook() {
         try {
-            System.out.println("Introduïu les dades del llibre:");
-            System.out.print("Titol: ");
+            System.out.println("Introdueix les dades del llibre:");
+            System.out.print("Títol: ");
             String title = scanner.nextLine().trim();
-            System.out.print("Descripcio: ");
+            System.out.print("Descripció: ");
             String description = scanner.nextLine().trim();
             System.out.print("ISBN: ");
             String isbn = scanner.nextLine().trim();
             System.out.print("Autor: ");
             String author = scanner.nextLine().trim();
-            System.out.print("Genere: ");
+            System.out.print("Gènere: ");
             String genre = scanner.nextLine().trim();
 
             Book newBook = new Book ( title, description, isbn, author, genre, true);
             boolean created = bookController.createBook(newBook);
             
             if (created) {
-                System.out.println("Llibre creat amb exit!");
+                System.out.println("Llibre creat amb èxit!");
             } else {
                 System.out.println("No s'ha pogut crear el llibre.");
             }
@@ -95,7 +97,7 @@ public class BookView {
 
     private void findBooksByTitle() {
         try {
-            System.out.print("Introduïu el títol a buscar: ");
+            System.out.print("Introdueix el títol a buscar: ");
             String title = scanner.nextLine().trim();
             List<Book> books = bookController.getBooksByTitle(title);
             displayView.displayFullBookDetails(books);
@@ -106,7 +108,7 @@ public class BookView {
 
     private void findBooksByAuthor() {
         try {
-            System.out.print("Introduïu l'autor a buscar: ");
+            System.out.print("Introdueix l'autor a buscar: ");
             String author = scanner.nextLine().trim();
             List<Book> books = bookController.getBooksByAuthor(author);
             displayView.displayFullBookDetails(books);
@@ -117,7 +119,7 @@ public class BookView {
 
     private void findBooksByGenre() {
         try {
-            System.out.print("Introduïu el gènere a buscar: ");
+            System.out.print("Introdueix el gènere a buscar: ");
             String genre = scanner.nextLine().trim();
             List<Book> books = bookController.getBooksByGenre(genre);
             displayView.displayBooksByGenre(books);
@@ -128,7 +130,7 @@ public class BookView {
 
     private void editBook() {
         try {
-            System.out.print("Introduïu l'ID del llibre a editar: ");
+            System.out.print("Introdueix l'ID del llibre a editar: ");
             int id = Integer.parseInt(scanner.nextLine().trim());
             Book book = bookController.getBookById(id);
 
@@ -138,7 +140,7 @@ public class BookView {
             }
 
             displayView.displaySingleBook(book);
-            System.out.println("Introduïu les noves dades (deixeu en blanc per mantenir les actuals):");
+            System.out.println("Introdueix les noves dades (deixeu en blanc per mantenir les actuals):");
 
             System.out.print("Títol [" + book.getTitle() + "]: ");
             String title = scanner.nextLine().trim();
@@ -191,7 +193,7 @@ public class BookView {
 
     private void deleteBook() {
         try {
-            System.out.print("Introduïu l'ID del llibre a eliminar: ");
+            System.out.print("Introdueix l'ID del llibre a eliminar: ");
             int id = Integer.parseInt(scanner.nextLine().trim());
             Book book = bookController.getBookById(id);
 
@@ -201,7 +203,7 @@ public class BookView {
             }
 
             displayView.displaySingleBook(book);
-            System.out.print("Esteu segur que voleu eliminar aquest llibre? (s/n): ");
+            System.out.print("Estàs segur que vols eliminar aquest llibre? (s/n): ");
             String confirm = scanner.nextLine().trim().toLowerCase();
 
             if (confirm.equals("s")) {
@@ -215,7 +217,7 @@ public class BookView {
                 System.out.println("Operació cancel·lada.");
             }
         } catch (NumberFormatException e) {
-            System.out.println("Si us plau, introduïu un ID vàlid.");
+            System.out.println("Si us plau, introdueix un ID vàlid.");
         } catch (SQLException e) {
             System.out.println("Error en eliminar el llibre: " + e.getMessage());
         }
