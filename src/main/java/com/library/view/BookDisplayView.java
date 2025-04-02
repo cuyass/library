@@ -26,7 +26,7 @@ public class BookDisplayView {
 
     public void displayFullBookDetails(List<Book> books) {
         if (books.isEmpty()) {
-            System.out.println("No s'han trobat llibres.");
+            System.out.println("\nNo s'han trobat llibres.\n");
             return;
         }
 
@@ -37,7 +37,7 @@ public class BookDisplayView {
 
     public void displayBooksByGenre(List<Book> books) {
         if (books.isEmpty()) {
-            System.out.println("No s'han trobat llibres amb aquest gènere.");
+            System.out.println("\nNo s'han trobat llibres amb aquest gènere.\n");
             return;
         }
 
@@ -48,7 +48,7 @@ public class BookDisplayView {
 
     public void displaySingleBook(Book book) {
         if (book == null) {
-            System.out.println("No s'ha trobat el llibre.");
+            System.out.println("\nNo s'ha trobat el llibre.\n");
             return;
         }
 

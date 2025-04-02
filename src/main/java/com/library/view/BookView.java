@@ -51,6 +51,15 @@ public class BookView {
                     }
                     default -> System.out.println("Opció no vàlida. Torna a intentar-ho.");
                 }
+
+                if (option != 8) {
+                    System.out.print("Vols tornar al menú? (s/n): ");
+                    String response = scanner.nextLine().trim().toLowerCase();
+                    if (response.equals("n")) {
+                        exit = true;
+                        System.out.println("Adéu!");
+                    }
+                }
             } catch (NumberFormatException e) {
                 System.out.println("Si us plau, introdueix un número vàlid.");
             } catch (Exception e) {
