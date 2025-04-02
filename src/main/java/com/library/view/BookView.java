@@ -47,31 +47,31 @@ public class BookView {
                     case 7 -> deleteBook();
                     case 8 -> {
                         exit = true;
-                        System.out.println("Adéu!");
+                        goodbyeMsg();
                     }
                     default -> System.out.println("Opció no vàlida. Torna a intentar-ho.");
                 }
 
                 if (option != 8) {
-                    System.out.print("Vols tornar al menú? (s/n): ");
+                    System.out.print("\nVols tornar al menú? (s/n): ");
                     String response = scanner.nextLine().trim().toLowerCase();
                     if (response.equals("n")) {
                         exit = true;
-                        System.out.println("Adéu!");
+                        goodbyeMsg();
                     }
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Si us plau, introdueix un número vàlid.");
+                System.out.println("\nSi us plau, introdueix un número vàlid.");
             } catch (Exception e) {
-                System.out.println("S'ha produït un error: " + e.getMessage());
+                System.out.println("\nS'ha produït un error: " + e.getMessage());
             }
         }
     }
 
     private void createBook() {
         try {
-            System.out.println("Introdueix les dades del llibre:");
-            System.out.print("Títol: ");
+            System.out.println("\nIntrodueix les dades del llibre:");
+            System.out.print("\nTítol: ");
             String title = scanner.nextLine().trim();
             System.out.print("Descripció: ");
             String description = scanner.nextLine().trim();
@@ -86,73 +86,73 @@ public class BookView {
             boolean created = bookController.createBook(newBook);
             
             if (created) {
-                System.out.println("Llibre creat amb èxit!");
+                System.out.println("\nLlibre creat amb èxit!\n");
             } else {
-                System.out.println("No s'ha pogut crear el llibre.");
+                System.out.println("\nNo s'ha pogut crear el llibre.\n");
             }
         } catch (SQLException e) {
-            System.out.println("Error al crear el llibre: " + e.getMessage());
+            System.out.println("\nError al crear el llibre: " + e.getMessage());
         }
     }
 
     private void showAllBooks() {
         try {
             List<Book> books = bookController.getAllBooks();
-            System.out.println("=== Tots els llibres ===\n");
+            System.out.println("\n=== Tots els llibres ===\n");
             displayView.displayBookList(books);
         } catch (SQLException e) {
-            System.out.println("Error en mostrar els llibres: " + e.getMessage());
+            System.out.println("\nError en mostrar els llibres: " + e.getMessage());
         }
     }
 
     private void findBooksByTitle() {
         try {
-            System.out.print("Introdueix el títol a buscar: ");
+            System.out.print("\nIntrodueix el títol a buscar: ");
             String title = scanner.nextLine().trim();
             List<Book> books = bookController.getBooksByTitle(title);
             displayView.displayFullBookDetails(books);
         } catch (SQLException e) {
-            System.out.println("Error en buscar llibres per títol: " + e.getMessage());
+            System.out.println("\nError en buscar llibres per títol: " + e.getMessage());
         }
     }
 
     private void findBooksByAuthor() {
         try {
-            System.out.print("Introdueix l'autor a buscar: ");
+            System.out.print("\nIntrodueix l'autor a buscar: ");
             String author = scanner.nextLine().trim();
             List<Book> books = bookController.getBooksByAuthor(author);
             displayView.displayFullBookDetails(books);
         } catch (SQLException e) {
-            System.out.println("Error en buscar llibres per autor: " + e.getMessage());
+            System.out.println("\nError en buscar llibres per autor: " + e.getMessage());
         }
     }
 
     private void findBooksByGenre() {
         try {
-            System.out.print("Introdueix el gènere a buscar: ");
+            System.out.print("\nIntrodueix el gènere a buscar: ");
             String genre = scanner.nextLine().trim();
             List<Book> books = bookController.getBooksByGenre(genre);
             displayView.displayBooksByGenre(books);
         } catch (SQLException e) {
-            System.out.println("Error en buscar llibres per gènere: " + e.getMessage());
+            System.out.println("\nError en buscar llibres per gènere: " + e.getMessage());
         }
     }
 
     private void editBook() {
         try {
-            System.out.print("Introdueix l'ID del llibre a editar: ");
+            System.out.print("\nIntrodueix l'ID del llibre a editar: ");
             int id = Integer.parseInt(scanner.nextLine().trim());
             Book book = bookController.getBookById(id);
 
             if (book == null) {
-                System.out.println("No s'ha trobat cap llibre amb aquest ID.");
+                System.out.println("\nNo s'ha trobat cap llibre amb aquest ID.");
                 return;
             }
 
             displayView.displaySingleBook(book);
-            System.out.println("Introdueix les noves dades (deixeu en blanc per mantenir les actuals):");
+            System.out.println("\nIntrodueix les noves dades (deixeu en blanc per mantenir les actuals):");
 
-            System.out.print("Títol [" + book.getTitle() + "]: ");
+            System.out.print("\nTítol [" + book.getTitle() + "]: ");
             String title = scanner.nextLine().trim();
             if (!title.isEmpty()) {
                 book.setTitle(title);
@@ -190,46 +190,66 @@ public class BookView {
 
             boolean updated = bookController.updateBook(book);
             if (updated) {
-                System.out.println("Llibre actualitzat amb èxit!");
+                System.out.println("\nLlibre actualitzat amb èxit!");
             } else {
-                System.out.println("No s'ha pogut actualitzar el llibre.");
+                System.out.println("\nNo s'ha pogut actualitzar el llibre.");
             }
         } catch (NumberFormatException e) {
-            System.out.println("Si us plau, introdueix un ID vàlid.");
+            System.out.println("\nSi us plau, introdueix un ID vàlid.");
         } catch (SQLException e) {
-            System.out.println("Error en editar el llibre: " + e.getMessage());
+            System.out.println("\nError en editar el llibre: " + e.getMessage());
         }
     }
 
     private void deleteBook() {
         try {
-            System.out.print("Introdueix l'ID del llibre a eliminar: ");
+            System.out.print("\nIntrodueix l'ID del llibre a eliminar: ");
             int id = Integer.parseInt(scanner.nextLine().trim());
             Book book = bookController.getBookById(id);
 
             if (book == null) {
-                System.out.println("No s'ha trobat cap llibre amb aquest ID.");
+                System.out.println("\nNo s'ha trobat cap llibre amb aquest ID.");
                 return;
             }
 
             displayView.displaySingleBook(book);
-            System.out.print("Estàs segur que vols eliminar aquest llibre? (s/n): ");
+            System.out.print("\nEstàs segur que vols eliminar aquest llibre? (s/n): ");
             String confirm = scanner.nextLine().trim().toLowerCase();
 
             if (confirm.equals("s")) {
                 boolean deleted = bookController.deleteBook(id);
                 if (deleted) {
-                    System.out.println("Llibre eliminat amb èxit!");
+                    System.out.println("\nLlibre eliminat amb èxit!");
                 } else {
-                    System.out.println("No s'ha pogut eliminar el llibre.");
+                    System.out.println("\nNo s'ha pogut eliminar el llibre.");
                 }
             } else {
-                System.out.println("Operació cancel·lada.");
+                System.out.println("\nOperació cancel·lada.");
             }
         } catch (NumberFormatException e) {
-            System.out.println("Si us plau, introdueix un ID vàlid.");
+            System.out.println("\nSi us plau, introdueix un ID vàlid.");
         } catch (SQLException e) {
-            System.out.println("Error en eliminar el llibre: " + e.getMessage());
+            System.out.println("\nError en eliminar el llibre: " + e.getMessage());
         }
+    }
+
+    private void goodbyeMsg() {
+        System.out.println("   _____");
+        System.out.println("  /     \\");
+        System.out.println("/- (*) |*)\\");
+        System.out.println("|/\\.  _>/\\|   Adéu!");
+        System.out.println("    \\__/    |\\");
+        System.out.println("   _| |_   \\-/");
+        System.out.println("  /|\\__|\\  //");
+        System.out.println(" |/|   |\\\\//");
+        System.out.println(" |||   | ~'");
+        System.out.println(" ||| __|");
+        System.out.println(" /_\\| ||");
+        System.out.println(" \\_/| ||");
+        System.out.println("   |7 |7");
+        System.out.println("   || ||");
+        System.out.println("   || ||");
+        System.out.println("   /\\ \\ \\");
+        System.out.println("  ^^^^ ^^^");
     }
 }
